@@ -1,0 +1,15 @@
+.swiper-container {
+    width: 100%;
+    padding: 20px;
+}
+    
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+    
+    &:hover {
+        transform: scale(1.1);
+    }
+}

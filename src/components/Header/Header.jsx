@@ -2,9 +2,10 @@
 import React from 'react';
 import './Header.scss';
 
-const Header = () => {return (
+const Header = ({ toggleTheme }) => {return (
     <header className="header">
-        <div className="logo">MiStreaming</div>
+        <div className="logo">Lunala Streaming</div>
+        <button onClick={toggleTheme}>Cambiar modo día/noche</button>
         <nav>
             <ul className="nav-links">
             <li><a href="/">Inicio</a></li>
