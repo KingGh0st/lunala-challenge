@@ -1,8 +1,9 @@
 import React, { useEffect,useState } from 'react';
 import { fetchMovies } from './services/api';
-import Header from './components/Header';
-import Carrusel from './components/Carrusel';
-import MovieList from './components/MovieList';
+import Header from './components/Header/Header.jsx';
+import Carrusel from './components/Carrusel/Carrusel.jsx';
+import HeroCard from './components/HeroCard/HeroCard.jsx'
+import MovieList from './components/MovieList/MovieList.jsx';
 import './App.scss';
 
 const App = () => {
@@ -27,7 +28,7 @@ const App = () => {
   return (
     <div className={"app ${isDarkMode ? 'dark-mode' : 'light-mode'}"}>
       <Header toggleTheme={toggleTheme}/>
-      {featuredMovie && <Hero movie={featuredMovie} />}
+      {featuredMovie && <HeroCard movie={featuredMovie} />}
       <main>
         <MovieList movies={movies} />
       </main>
