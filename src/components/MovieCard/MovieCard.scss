@@ -3,23 +3,25 @@
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s ease;
-    
-        &:hover {
+    align-content: center;
+
+    &:hover {
         transform: scale(1.05);
-        }
-    
-        img {
+    }
+
+    img {
         width: 100%;
-        height: auto;
-        }
-    
-        h3 {
+        height: 60%;
+    }
+
+    h3 {
+        color: #ccc;
         margin: 10px;
         font-size: 1.2rem;
-        }
-    
-        p {
+    }
+
+    p {
         margin: 10px;
         color: #ccc;
-        }
+    }
 }

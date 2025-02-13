@@ -4,13 +4,13 @@ import './Header.scss';
 
 const Header = ({ toggleTheme }) => {return (
     <header className="header">
-        <div className="logo">Lunala Streaming</div>
-        <button onClick={toggleTheme}>Cambiar modo día/noche</button>
+        <div className="logo"><a href="/">Lunala Streaming</a></div>
         <nav>
             <ul className="nav-links">
             <li><a href="/">Inicio</a></li>
             <li><a href="/series">Series</a></li>
             <li><a href="/peliculas">Películas</a></li>
+            <li><button onClick={toggleTheme}>Modo día/noche</button></li>
             </ul>
         </nav>
     </header>

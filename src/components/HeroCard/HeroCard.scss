@@ -6,8 +6,9 @@
     justify-content: center;
     color: #fff;
     text-align: center;
-    
-        .herocard-background {
+    overflow: hidden;
+
+    .herocard-background {
         position: absolute;
         top: 0;
         left: 0;
@@ -15,35 +16,33 @@
         height: 100%;
         object-fit: cover;
         z-index: -1;
-        }
-    
-        .herocard-content {
+    }
+
+    .herocard-content {
         z-index: 1;
-        max-width: 600px;
-    
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-    
-        p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-    
-        button {
-            margin: 5px;
-            padding: 10px 20px;
-            font-size: 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #e50914;
-            color: #fff;
-    
-            &:hover {
-            background-color: #f40612;
+        width: 100%;
+            h1 {
+                font-size: 3rem;
+                margin-bottom: 20px;
+                color: white;
+            }
+            p {
+                font-size: 1.2rem;
+                margin-bottom: 20px;
+            }
+            button {
+                margin: 5px;
+                padding: 10px 20px;
+                font-size: 1rem;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                background-color: #e50914;
+                color: #fff;
+
+                &:hover {
+                background-color: #f40612;
+                }
             }
         }
-        }
-    }
+}
