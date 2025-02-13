@@ -3,22 +3,22 @@ en este caso particular como tendrá forma de carta se llamará HeroCard*/
 import React from 'react';
 import './HeroCard.scss';
 
-const HeroCard = ({ movie }) => {
+const HeroCard = ({ movie, onMoreInfoClick }) => {
     if (!movie) return null;
 
     return (
         <section className="herocard">
-        <img
-            src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-            alt={movie.title}
-            className="herocard-background"
-        />
-        <div className="herocard-content">
-            <h1>{movie.title}</h1>
-            <p>{movie.overview.substring(0, 300)}...</p>
-            <button>Reproducir</button>
-            <button>Más información</button>
-        </div>
+            <img
+                src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                alt={movie.title}
+                className="herocard-background"
+            />
+            <div className="herocard-content">
+                <h1>{movie.title}</h1>
+                <p>{movie.overview.substring(0, 300)}...</p>
+                <button disabled>Reproducir</button>
+                <button onClick={ onMoreInfoClick }>Más información</button>
+            </div>
         </section>
     );
 };

@@ -1,5 +1,5 @@
 .carrusel {
-    padding: 10px;
+    padding: 20px;
 
     h2 {
         font-size: 1.5rem;
@@ -9,6 +9,7 @@
 
     .swiper-container {
         width: 100%;
+        position: relative;
     }
 
     .swiper-slide {
@@ -16,15 +17,45 @@
         justify-content: center;
         align-items: center;
         transition: transform 0.3s ease;
-
+    
         &:hover {
-        transform: scale(1.1);
+            transform: scale(1.1);
         }
 
-        img{
-            max-width: 105%;
+        img {
+            max-width: 100%; 
             height: auto;
-            border-radius: 20px;
         }
+    }
+    // Estilos para las flechas de navegación
+    .swiper-button-next,
+    .swiper-button-prev {
+        color: #9618af;
+        background: rgba(0, 0, 0, 0.5); 
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: background 0.3s ease;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        
+        &:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+    
+        &::after {
+            font-size: 1.5rem;
+        }
+
+    }
+
+    .swiper-button-next {
+        right: 10px; // Posición de la flecha de siguiente
+    }
+    
+    .swiper-button-prev {
+        left: 10px; // Posición de la flecha de anterior
     }
 }

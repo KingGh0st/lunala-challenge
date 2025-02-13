@@ -7,7 +7,6 @@ const Header = ({ toggleTheme }) => {return (
         <div className="logo"><a href="/">Lunala Streaming</a></div>
         <nav>
             <ul className="nav-links">
-            <li><a href="/">Inicio</a></li>
             <li><a href="/series">Series</a></li>
             <li><a href="/peliculas">Películas</a></li>
             <li><button onClick={toggleTheme}>Modo día/noche</button></li>

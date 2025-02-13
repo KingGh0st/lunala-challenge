@@ -43,6 +43,12 @@
                 &:hover {
                 background-color: #f40612;
                 }
+
+                &:disabled {
+                    background-color: #ccc;
+                    cursor: not-allowed;
+                    color: #666;
+                }
             }
         }
 }

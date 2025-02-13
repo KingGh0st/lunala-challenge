@@ -1,9 +1,10 @@
 import React, { useEffect,useState } from 'react';
-import { fetchMovies } from './services/api';
+import { fetchMovies, fetchMovieDetails } from './services/api';
 import Header from './components/Header/Header.jsx';
 import Carrusel from './components/Carrusel/Carrusel.jsx';
 import HeroCard from './components/HeroCard/HeroCard.jsx'
 import MovieList from './components/MovieList/MovieList.jsx';
+import MovieDetail from './components/MovieDetail/MovieDetail.jsx';
 import Filters from './components/Filters/Filters.jsx';
 import './App.scss';
 
@@ -13,6 +14,8 @@ const App = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [filteredMovies, setFilteredMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   //Integración del cambio de tema oscuro y tema claro
   const toggleTheme = () =>{
@@ -34,6 +37,24 @@ const App = () => {
     setFilteredMovies(filtered)
   }
 
+  const handleMovieClick = async (movieId) =>{
+    const movieDetails = await fetchMovieDetails(movieId);
+    setSelectedMovie(movieDetails);
+    setIsModalOpen(true);
+  }
+
+  const handleMoreInfoClick = () => {
+    if (featuredMovie) {
+      setSelectedMovie(featuredMovie);
+      setIsModalOpen(true);
+    }
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedMovie(null);
+  }
+
   useEffect(() => {
     const getMovies = async () => {
       const popularMovies = await fetchMovies('/movie/popular');
@@ -49,11 +70,10 @@ const App = () => {
     <div className={"app ${isDarkMode ? 'dark-mode' : 'light-mode'}"}>
       <Header toggleTheme={toggleTheme}/>
       <Filters onFilter={handleFilter} onSearch={handleSearch}/>
-      <HeroCard movie={featuredMovie}/>
-      <Carrusel movies={trendingMovies} title="Destacadas"/>
-      <main>
-        <MovieList movies={movies} />
-      </main>
+      {featuredMovie && <HeroCard movie={featuredMovie} onMoreInfoClick={handleMoreInfoClick}/>}
+      <Carrusel movies={trendingMovies} title="Destacadas" onMovieClick={handleMovieClick}/>
+      <MovieList movies={movies} onMovieClick={handleMovieClick}/>
+      {isModalOpen && <MovieDetail movie={selectedMovie} onClose={handleCloseModal}/>}
     </div>
   );
 };
