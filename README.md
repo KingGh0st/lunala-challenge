@@ -2,6 +2,12 @@
 
 Hice una aplicación de streaming inspirada en Netflix, desarrollada con **React**. Permite a los usuarios explorar películas y series, filtrarlas por género y buscar contenido de manera eficiente. La interfaz de usuario tiene un diseño moderno con tonos violetas y fucsia, armonizando una estética vibrante y atractiva.
 
+# Preview en modo oscuro
+![Dark-mode](Dark-mode.png)
+
+# Preview en modo claro
+![Light-mode](Light-mode.png)
+
 ## 🚀 Instalación
 
 Para ejecutar este proyecto localmente, sigue estos pasos:
