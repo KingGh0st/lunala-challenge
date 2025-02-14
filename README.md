@@ -2,7 +2,7 @@
 
 Hice una aplicación de streaming inspirada en Netflix, desarrollada con **React**. Permite a los usuarios explorar películas y series, filtrarlas por género y buscar contenido de manera eficiente. La interfaz de usuario tiene un diseño moderno con tonos violetas y fucsia, armonizando una estética vibrante y atractiva.
 
-Puedes ver el website desplegado en: `https://lunala-challenge.netlify.app/`.
+Puedes ver el website desplegado en: [Netlify Lunala-Challenge](https://lunala-challenge.netlify.app/).
 
 # Preview en modo oscuro
 ![Dark-mode](Dark-mode.png)
