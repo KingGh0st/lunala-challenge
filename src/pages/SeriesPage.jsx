@@ -1,3 +1,5 @@
+//Este es el código para la página destinada a mostrar solamente las series
+
 import React, { useState, useEffect } from 'react';
 import SeriesList from '../components/SeriesList/SeriesList';
 import Filters from '../components/Filters/Filters'; 
