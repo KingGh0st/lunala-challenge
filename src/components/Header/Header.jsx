@@ -2,12 +2,14 @@
 import React from 'react';
 import './Header.scss';
 import { Link } from 'react-router-dom';
+import Filters from '../Filters/Filters.jsx';
 
-const Header = ({ toggleTheme }) => {return (
+const Header = ({ toggleTheme, onFilter, onSearch }) => {return (
     <header className="header">
         <div className="logo">
             <Link to="/">Lunala Streaming</Link>
         </div>
+        <Filters onFilter={onFilter} onSearch={onSearch}/>
         <nav>
             <ul className="nav-links">
                 <li><Link to="/series">Series</Link></li>

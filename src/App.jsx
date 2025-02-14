@@ -24,7 +24,6 @@ const App = () => {
   //Integración del cambio de tema oscuro y tema claro
   const toggleTheme = () =>{
     setIsDarkMode(!isDarkMode);
-    document.body.classList.toggle('light-mode', !isDarkMode);
   }
 
   //Integración de los filtros
@@ -81,17 +80,16 @@ const App = () => {
 
   return (
     <Router>
-      <div className={"app ${isDarkMode ? 'dark-mode' : 'light-mode'}"}>
-        <Header toggleTheme={toggleTheme}/>
+      <div className={`app ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+        <Header toggleTheme={toggleTheme} onFilter={handleFilter} onSearch={handleSearch}/>
         <Routes>
           <Route
             path='/'
             element={
               <>
-                <Filters onFilter={handleFilter} onSearch={handleSearch}/>
                 {featuredMovie && <HeroCard movie={featuredMovie} onMoreInfoClick={() => handleMoreInfoClick(featuredMovie.id)}/>}
-                <Carrusel items={movies} title="Películas destacadas" onItemClick={(itemId) => handleItemClick(itemId)}/>
-                <MovieList movies={movies} onMovieClick={(itemId) => handleItemClick(itemId)}/>
+                <Carrusel items={filteredMovies.length > 0 ? filteredMovies : movies} title="Películas destacadas" onItemClick={(itemId) => handleItemClick(itemId)}/>
+                <MovieList movies={filteredMovies.length > 0 ? filteredMovies : movies} onMovieClick={(itemId) => handleItemClick(itemId)}/>
               </>
             }
           />

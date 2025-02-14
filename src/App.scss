@@ -1,9 +1,35 @@
+// Estilos para el modo oscuro
 .dark-mode {
     background-color: #141414;
     color: #fff;
+
+    .header {
+        background: linear-gradient(90deg, rgba(122, 0, 247, 0.84) 0%, rgba(205, 81, 255, 1) 47%, rgba(1, 0, 255, 0.84) 100%);
+        color: #fff;
+    }
+
+    .movie-card, .series-card {
+        background: #1a1a1a;
+        color: #fff;
+    }
 }
 
+  // Estilos para el modo claro
 .light-mode {
     background-color: #fff;
     color: #000;
+
+    .header {
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.84) 0%, rgba(205, 81, 255, 0.5) 47%, rgba(1, 0, 255, 0.5) 100%);
+    }
+        .logo{
+            a   {
+                color: #000;
+            }
+        }
+
+    .movie-card, .series-card {
+        background: #f5f5f5;
+        color: #000;
+    }
 }

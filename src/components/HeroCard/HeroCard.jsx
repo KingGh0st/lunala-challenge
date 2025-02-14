@@ -7,7 +7,7 @@ const HeroCard = ({ movie, onMoreInfoClick }) => {
     if (!movie) return null;
 
     return (
-        <section className="herocard">
+        <section className="herocard" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` }}>
             <img
                 src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                 alt={movie.title}
