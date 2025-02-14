@@ -1,20 +1,24 @@
 import React, { useEffect,useState } from 'react';
-import { fetchMovies, fetchMovieDetails } from './services/api';
+import { fetchMovies, fetchMovieDetails, fetchSeries, fetchSerieDetails } from './services/api';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Header from './components/Header/Header.jsx';
 import Carrusel from './components/Carrusel/Carrusel.jsx';
 import HeroCard from './components/HeroCard/HeroCard.jsx'
 import MovieList from './components/MovieList/MovieList.jsx';
 import MovieDetail from './components/MovieDetail/MovieDetail.jsx';
 import Filters from './components/Filters/Filters.jsx';
+import SeriesPage from './pages/SeriesPage.jsx';
+import MoviesPage from './pages/MoviesPage.jsx';
 import './App.scss';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
+  const [series, setSeries] = useState([]);
   const [featuredMovie, setFeaturedMovie] = useState(null);
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   //Integración del cambio de tema oscuro y tema claro
@@ -37,24 +41,25 @@ const App = () => {
     setFilteredMovies(filtered)
   }
 
-  const handleMovieClick = async (movieId) =>{
-    const movieDetails = await fetchMovieDetails(movieId);
-    setSelectedMovie(movieDetails);
+  const handleItemClick = async (itemId, isSeries = false) => {
+    const itemDetails = isSeries ? await fetchSerieDetails(itemId) : await fetchMovieDetails(itemId);
+    setSelectedItem(itemDetails);
     setIsModalOpen(true);
   }
 
   const handleMoreInfoClick = () => {
     if (featuredMovie) {
-      setSelectedMovie(featuredMovie);
+      setSelectedItem(featuredMovie);
       setIsModalOpen(true);
     }
   }
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setSelectedMovie(null);
+    setSelectedItem(null);
   }
 
+  // Usado para obtener específicamente películas populares
   useEffect(() => {
     const getMovies = async () => {
       const popularMovies = await fetchMovies('/movie/popular');
@@ -66,15 +71,50 @@ const App = () => {
     getMovies();
   }, []);
 
+  useEffect(() => {
+    const getSeries = async () => {
+      const popularSeries= await fetchSeries('/tv/popular');
+      setSeries(popularSeries);
+    };
+    getSeries();
+  }, []);
+
   return (
-    <div className={"app ${isDarkMode ? 'dark-mode' : 'light-mode'}"}>
-      <Header toggleTheme={toggleTheme}/>
-      <Filters onFilter={handleFilter} onSearch={handleSearch}/>
-      {featuredMovie && <HeroCard movie={featuredMovie} onMoreInfoClick={handleMoreInfoClick}/>}
-      <Carrusel movies={trendingMovies} title="Destacadas" onMovieClick={handleMovieClick}/>
-      <MovieList movies={movies} onMovieClick={handleMovieClick}/>
-      {isModalOpen && <MovieDetail movie={selectedMovie} onClose={handleCloseModal}/>}
-    </div>
+    <Router>
+      <div className={"app ${isDarkMode ? 'dark-mode' : 'light-mode'}"}>
+        <Header toggleTheme={toggleTheme}/>
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <>
+                <Filters onFilter={handleFilter} onSearch={handleSearch}/>
+                {featuredMovie && <HeroCard movie={featuredMovie} onMoreInfoClick={() => handleMoreInfoClick(featuredMovie.id)}/>}
+                <Carrusel items={movies} title="Películas destacadas" onItemClick={(itemId) => handleItemClick(itemId)}/>
+                <MovieList movies={movies} onMovieClick={(itemId) => handleItemClick(itemId)}/>
+              </>
+            }
+          />
+          <Route 
+            path='/peliculas'
+            element={<>
+              <Carrusel items={movies} title="Películas destacadas" onItemClick={(itemId) => handleItemClick(itemId)}/>
+              <MoviesPage movies={movies} onItemClick={(itemId) => handleItemClick(itemId)}/>
+              </>
+            }
+          />
+          <Route 
+            path='/series'
+            element={<>
+              <Carrusel items={series} title="Series destacadas" onItemClick={(itemId) => handleItemClick(itemId, true)}/>
+              <SeriesPage series={series} onItemClick={(itemId) => handleItemClick(itemId, true)}/>
+              </>
+            }
+          />
+        </Routes>
+        {isModalOpen && <MovieDetail movie={selectedItem} onClose={handleCloseModal}/>}
+      </div>
+    </Router>
   );
 };
 

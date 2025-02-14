@@ -4,7 +4,11 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 import './Carrusel.scss';
 
-const Carrusel = ({ movies, title, onMovieClick }) => {
+const Carrusel = ({ items, title, onItemClick }) => {
+    if (!items || !Array.isArray(items) || items.length === 0) {
+        return null;
+    }
+    
     return (
         <section className="carrusel">
             <h2>{title}</h2>
@@ -29,11 +33,11 @@ const Carrusel = ({ movies, title, onMovieClick }) => {
                         1024: {slidesPerView: 4},
                     }}
                 >
-                    {movies.map((movie) => (
-                        <SwiperSlide key={movie.id} onClick={() => onMovieClick(movie.id)}>
+                    {items.map((item) => (
+                        <SwiperSlide key={item.id} onClick={() => onItemClick(item.id)}>
                             <img
-                            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                            alt={movie.title}
+                                src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                                alt={item.title || item.name} 
                             />
                         </SwiperSlide>
                     ))}

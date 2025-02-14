@@ -11,8 +11,8 @@ const MovieCard = ({ movie, onClick }) => {
             />
             <h3>{movie.title}</h3>
             <p>{movie.overview.substring(0, 100)}...</p>
-            </div>
-        );
+        </div>
+    );
 };
 
 export default MovieCard;
