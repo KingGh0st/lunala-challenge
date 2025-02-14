@@ -1,5 +1,6 @@
 .carrusel {
     padding: 20px;
+    margin-top: 6vh;
 
     h2 {
         font-size: 1.5rem;
@@ -58,4 +59,12 @@
     .swiper-button-prev {
         left: 10px; // Posición de la flecha de anterior
     }
+}
+
+.dark-mode .carrusel {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.light-mode .carrusel {
+    background: rgba(255, 255, 255, 0.5);
 }

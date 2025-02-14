@@ -1,6 +1,14 @@
+@keyframes backgroundMove {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
 // Estilos para el modo oscuro
 .dark-mode {
     background-color: #141414;
+    background: linear-gradient(135deg, #1a002a, #3a007d);
+    background-size: 200% 200%;
+    animation: backgroundMove 10s infinite alternate;
     color: #fff;
 
     .header {
@@ -9,18 +17,21 @@
     }
 
     .movie-card, .series-card {
-        background: #1a1a1a;
+        background: #5e5e5ec4;
         color: #fff;
     }
 }
 
   // Estilos para el modo claro
 .light-mode {
+    background: linear-gradient(135deg, #f3e8ff, #dab6ff);
+    background-size: 200% 200%;
+    animation: backgroundMove 10s infinite alternate;
     background-color: #fff;
     color: #000;
 
     .header {
-        background: linear-gradient(90deg, rgba(255, 255, 255, 0.84) 0%, rgba(205, 81, 255, 0.5) 47%, rgba(1, 0, 255, 0.5) 100%);
+        background: linear-gradient(90deg, rgba(205, 81, 255, 0.5) 0%, rgba(255, 255, 255, 0.84) 47%,  rgba(1, 0, 255, 0.5) 100%);
     }
         .logo{
             a   {
@@ -29,7 +40,24 @@
         }
 
     .movie-card, .series-card {
-        background: #f5f5f5;
+        background: #ffffffb7;
+        color: #000000;
+
+        p{
+            color: #000;
+        }
+
+        h3{
+            color: #000;
+        }
+    }
+
+    .modal-content{
+        background-color: #ffffffd3;
         color: #000;
     }
+}
+
+.app{
+    padding-top: 80px;
 }

@@ -1,4 +1,5 @@
 import React, { useEffect,useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { fetchMovies, fetchMovieDetails, fetchSeries, fetchSerieDetails, fetchGenres} from './services/api';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Header from './components/Header/Header.jsx';
@@ -109,40 +110,42 @@ const App = () => {
   }, [])
 
   return (
-    <Router>
-      <div className={`app ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-        <Header toggleTheme={toggleTheme} genres={moviesGenres} onFilter={handleFilter} onSearch={handleSearch}/>
-        <Routes>
-          <Route
-            path='/'
-            element={
-              <>
-                {featuredMovie && <HeroCard movie={featuredMovie} onMoreInfoClick={() => handleMoreInfoClick(featuredMovie.id)}/>}
-                <Carrusel items={filteredMovies.length > 0 ? filteredMovies : movies} title="Películas destacadas" onItemClick={(itemId) => handleItemClick(itemId)}/>
-                <MovieList movies={filteredMovies.length > 0 ? filteredMovies : movies} onMovieClick={(itemId) => handleItemClick(itemId)}/>
-              </>
-            }
-          />
-          <Route 
-            path='/peliculas'
-            element={<>
-                <Carrusel items={movies} title="Películas destacadas" onItemClick={(itemId) => handleItemClick(itemId)}/>
-                <MoviesPage movies={filteredMovies.length ? filteredMovies : movies} onItemClick={(itemId) => handleItemClick(itemId)}/>
-              </>
-            }
-          />
-          <Route 
-            path='/series'
-            element={<>
-                <Carrusel items={series} title="Series destacadas" onItemClick={(itemId) => handleItemClick(itemId, true)}/>
-                <SeriesPage series={filteredSeries.length ? filteredSeries : series} seriesGenres={seriesGenres} onItemClick={(itemId) => handleItemClick(itemId, true)}/>
-              </>
-            }
-          />
-        </Routes>
-        {isModalOpen && <MovieDetail movie={selectedItem} onClose={handleCloseModal}/>}
-      </div>
-    </Router>
+    <AnimatePresence>
+      <Router>
+        <div className={`app ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+          <Header toggleTheme={toggleTheme} genres={moviesGenres} onFilter={handleFilter} onSearch={handleSearch}/>
+          <Routes>
+            <Route
+              path='/'
+              element={
+                <>
+                  {featuredMovie && <HeroCard movie={featuredMovie} onMoreInfoClick={() => handleMoreInfoClick(featuredMovie.id)}/>}
+                  <Carrusel items={filteredMovies.length > 0 ? filteredMovies : movies} title="Películas destacadas" onItemClick={(itemId) => handleItemClick(itemId)}/>
+                  <MovieList movies={filteredMovies.length > 0 ? filteredMovies : movies} onMovieClick={(itemId) => handleItemClick(itemId)}/>
+                </>
+              }
+            />
+            <Route 
+              path='/peliculas'
+              element={<>
+                  <Carrusel items={movies} title="Películas destacadas" onItemClick={(itemId) => handleItemClick(itemId)}/>
+                  <MoviesPage movies={filteredMovies.length ? filteredMovies : movies} onItemClick={(itemId) => handleItemClick(itemId)}/>
+                </>
+              }
+            />
+            <Route 
+              path='/series'
+              element={<>
+                  <Carrusel items={series} title="Series destacadas" onItemClick={(itemId) => handleItemClick(itemId, true)}/>
+                  <SeriesPage series={filteredSeries.length ? filteredSeries : series} seriesGenres={seriesGenres} onItemClick={(itemId) => handleItemClick(itemId, true)}/>
+                </>
+              }
+            />
+          </Routes>
+          {isModalOpen && <MovieDetail movie={selectedItem} onClose={handleCloseModal}/>}
+        </div>
+      </Router>
+    </AnimatePresence>
   );
 };
 

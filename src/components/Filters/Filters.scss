@@ -1,0 +1,51 @@
+.filters {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    
+    input, select {
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: none;
+        font-size: 1rem;
+        outline: none;
+        transition: all 0.3s ease-in-out;
+
+        &:focus {
+            box-shadow: 0 0 5px rgba(205, 81, 255, 0.8);
+        }
+    }
+
+    input {
+        width: 250px;
+    }
+
+    select {
+        background-color: rgba(205, 81, 255, 0.1);
+        cursor: pointer;
+    }
+}
+
+// Estilos para los diferentes modos
+.dark-mode {
+    .filters {
+        input, select {
+            background-color: #300a42; 
+            color: #fff;
+        }
+        ::placeholder {
+            color: #e7e7e7;
+        }
+    }
+}
+
+.light-mode {
+    .filters {
+        input, select {
+            background-color: #e0b3ff;
+            color: #000;
+        }
+    }
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SeriesList from '../components/SeriesList/SeriesList';
 import Filters from '../components/Filters/Filters'; 
+import { motion } from 'framer-motion';
 
 const SeriesPage = ({ series,  onItemClick }) => {
     const [filteredSeries, setFilteredSeries] = useState(series);
@@ -24,9 +25,14 @@ const SeriesPage = ({ series,  onItemClick }) => {
     };
 
     return (
-        <div>
+        <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            exit={{ opacity: 0 }} 
+            transition={{ duration: 0.5 }}
+        >
             <SeriesList series={filteredSeries} onSeriesClick={onItemClick} />
-        </div>
+        </motion.div>    
     );
 };
 
