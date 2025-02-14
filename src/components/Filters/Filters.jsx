@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Filters.scss';
 
-const Filters = ({ onFilter, onSearch }) => {
+const Filters = ({ genres, onFilter, onSearch }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [genre, setGenre] = useState('');
 
@@ -19,14 +19,17 @@ const Filters = ({ onFilter, onSearch }) => {
         <div className="filters">
         <input
             type="text"
-            placeholder="Buscar por título?"
+            placeholder="Buscar por título..."
             value={searchTerm}
             onChange={handleSearch}
         />
         <select value={genre} onChange={handleGenreChange}>
             <option value="">Todos los géneros</option>
-            <option value="28">Acción</option>
-            <option value="12">Aventura</option>
+            {genres.map((genre) => (
+                <option key={genre.id} value={genre.id}>
+                    {genre.name}
+                </option>
+            ))}
         </select>
         </div>
     );

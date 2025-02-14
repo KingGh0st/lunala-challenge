@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react';
-import { fetchMovies, fetchMovieDetails, fetchSeries, fetchSerieDetails } from './services/api';
+import { fetchMovies, fetchMovieDetails, fetchSeries, fetchSerieDetails, fetchGenres} from './services/api';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Header from './components/Header/Header.jsx';
 import Carrusel from './components/Carrusel/Carrusel.jsx';
@@ -14,10 +14,13 @@ import './App.scss';
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [series, setSeries] = useState([]);
+  const [moviesGenres, setMoviesGenres] = useState([]);
+  const [seriesGenres, setSeriesGenres] = useState([]);
   const [featuredMovie, setFeaturedMovie] = useState(null);
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [filteredMovies, setFilteredMovies] = useState([]);
+  const [filteredSeries, setFilteredSeries] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -28,17 +31,33 @@ const App = () => {
 
   //Integración de los filtros
   const handleFilter = (genre) => {
-    const filtered = movies.filter((movie) => movie.genre_ids.includes(Number(genre)));
-    setFilteredMovies(filtered.length > 0 ? filtered : movies);
-  }
+    if (window.location.pathname === "/series") {
+      const filtered = genre
+        ? series.filter((s) => s.genre_ids.includes(Number(genre)))
+        : series;
+      setFilteredSeries(filtered);
+    } else {
+      const filtered = genre
+        ? movies.filter((m) => m.genre_ids.includes(Number(genre)))
+        : movies;
+      setFilteredMovies(filtered);
+    }
+  };
 
-  //Integración de la búsqueda
+  // Integración de la búsqueda para películas y series
   const handleSearch = (term) => {
-    const filtered = movies.filter((movie) =>
-    movie.title.toLowerCase().includes(term.toLowerCase())
-    );
-    setFilteredMovies(filtered)
-  }
+    if (window.location.pathname === "/series") {
+      const filtered = series.filter((s) =>
+        s.name.toLowerCase().includes(term.toLowerCase())
+      );
+      setFilteredSeries(filtered);
+    } else {
+      const filtered = movies.filter((m) =>
+        m.title.toLowerCase().includes(term.toLowerCase())
+      );
+      setFilteredMovies(filtered);
+    }
+  };
 
   const handleItemClick = async (itemId, isSeries = false) => {
     const itemDetails = isSeries ? await fetchSerieDetails(itemId) : await fetchMovieDetails(itemId);
@@ -58,6 +77,17 @@ const App = () => {
     setSelectedItem(null);
   }
 
+  // Usado para obtener los géneros que ofrece la API
+  useEffect(() => {
+    const loadGenres = async () => {
+      const moviesGenresList = await fetchGenres('movie');
+      const seriesGenresList = await fetchGenres('tv');
+      setMoviesGenres(moviesGenresList);
+      setSeriesGenres(seriesGenresList);
+    };
+    loadGenres();
+  }, [])
+
   // Usado para obtener específicamente películas populares
   useEffect(() => {
     const getMovies = async () => {
@@ -68,7 +98,7 @@ const App = () => {
       setTrendingMovies(trendingMovies);
     };
     getMovies();
-  }, []);
+  }, [])
 
   useEffect(() => {
     const getSeries = async () => {
@@ -76,12 +106,12 @@ const App = () => {
       setSeries(popularSeries);
     };
     getSeries();
-  }, []);
+  }, [])
 
   return (
     <Router>
       <div className={`app ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-        <Header toggleTheme={toggleTheme} onFilter={handleFilter} onSearch={handleSearch}/>
+        <Header toggleTheme={toggleTheme} genres={moviesGenres} onFilter={handleFilter} onSearch={handleSearch}/>
         <Routes>
           <Route
             path='/'
@@ -96,16 +126,16 @@ const App = () => {
           <Route 
             path='/peliculas'
             element={<>
-              <Carrusel items={movies} title="Películas destacadas" onItemClick={(itemId) => handleItemClick(itemId)}/>
-              <MoviesPage movies={movies} onItemClick={(itemId) => handleItemClick(itemId)}/>
+                <Carrusel items={movies} title="Películas destacadas" onItemClick={(itemId) => handleItemClick(itemId)}/>
+                <MoviesPage movies={filteredMovies.length ? filteredMovies : movies} onItemClick={(itemId) => handleItemClick(itemId)}/>
               </>
             }
           />
           <Route 
             path='/series'
             element={<>
-              <Carrusel items={series} title="Series destacadas" onItemClick={(itemId) => handleItemClick(itemId, true)}/>
-              <SeriesPage series={series} onItemClick={(itemId) => handleItemClick(itemId, true)}/>
+                <Carrusel items={series} title="Series destacadas" onItemClick={(itemId) => handleItemClick(itemId, true)}/>
+                <SeriesPage series={filteredSeries.length ? filteredSeries : series} seriesGenres={seriesGenres} onItemClick={(itemId) => handleItemClick(itemId, true)}/>
               </>
             }
           />
