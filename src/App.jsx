@@ -1,3 +1,32 @@
+/*
+Para abordar el challenge, decidí utilizar el enfoque que ofrece React de componentes separados y reutilizables.
+Comencé analizando las interfaces de plataformas populares como Netflix, Amazon Prime Video y Disney+ para identificar los componentes clave que necesitaba implementar.
+Inicialmente, identifiqué tres componentes principales: el Header, una "Herocard" (que representa la película más destacada promocionada en la plataforma) y una lista de películas,
+la cual a su vez requería la creación de varios componentes de cartas de películas.
+A medida que profundicé en los requisitos del challenge, reconocí la necesidad de implementar otros componentes, como un carrusel para mostrar las películas de manera dinámica,
+filtros para permitir a los usuarios buscar contenido específico, y un modal que mostrara detalles adicionales sobre cada película o serie.
+Aunque soy nuevo en SCSS/SASS, decidí aprenderlo sobre la marcha mientras desarrollaba la página. Gracias a mi sólida base en CSS,
+el proceso fue más sencillo de lo esperado, y pude aprovechar las ventajas de SCSS, como la anidación de selectores y el uso de variables.
+Para la integración de los componentes y la interactividad, me enfoqué en la experiencia del usuario.
+Pensé en cómo me gustaría que se comportara la página al interactuar con cada componente. 
+or ejemplo, implementé la funcionalidad de cerrar el modal al hacer clic fuera de él, lo cual mejora la usabilidad y sigue patrones comunes en aplicaciones modernas.
+En cuanto al carrusel, investigué cuál sería la forma más eficiente de implementarlo. 
+Encontré una solución open source llamada Swiper, una librería altamente personalizable y compatible con varias bibliotecas de JavaScript, incluyendo React.
+Decidí integrar Swiper en la web debido a su facilidad de uso y su capacidad para manejar gestos táctiles y transiciones fluidas.
+Para las animaciones y transiciones suaves, utilicé una combinación de CSS y una librería de JavaScript llamada Framer Motion. 
+Aunque CSS me permitió implementar algunas animaciones básicas, Framer Motion resultó ser más adecuado para transiciones más complejas, como la animación de cierre del modal. 
+Esta librería me permitió lograr un efecto más pulido y profesional que no pude alcanzar únicamente con CSS.
+Para la navegación entre páginas, utilicé React Router Dom, una librería que permite manejar el enrutamiento en aplicaciones React.
+Implementé rutas para la página inicial, así como para las páginas dedicadas a películas (MoviesPage) y series (SeriesPage). 
+Además, actualicé la API para manejar la obtención de datos tanto de películas como de series, dependiendo de la página en la que el usuario se encontrara.
+En cuanto a los filtros, diseñé un sistema que permite filtrar tanto películas como series. 
+Decidí utilizar estados separados para los filtros de películas y series, lo que me permitió mantener la lógica de filtrado independiente para cada tipo de contenido. 
+Actualicé la API para obtener todos los géneros disponibles, tanto para películas como para series, y pasé los estados de los filtros como parámetros a las páginas correspondientes. 
+Esto permitió una experiencia de usuario más fluida y personalizada.
+Finalmente, al pensar en el diseño, elegí una paleta de colores basada en tonos violeta y fucsia, combinados con gradientes sutiles. 
+Para el modo claro, utilicé tonalidades claras de violeta y blanco, mientras que para el modo oscuro, opté por tonalidades más oscuras de violeta, grises y negros. 
+Esta combinación no solo es visualmente atractiva, sino que también garantiza una buena legibilidad y contraste en ambos modos.
+*/
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';//Para animaciones al montar/desmontar componentes
 import { fetchMovies, fetchMovieDetails, fetchSeries, fetchSerieDetails, fetchGenres } from './services/api';//Funciones para obtener datos de la API
