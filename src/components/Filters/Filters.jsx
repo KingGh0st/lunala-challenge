@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import './Filters.scss';
 
 //Componente Filtro que muestra la barra de búsqueda
-const Filters = ({ genres, onFilter, onSearch }) => {
+const Filters = ({ genres, onFilter, onSearch, isMenuOpen }) => {
     //Estados para gestionar la selección de géneros y la búsqueda
     const [searchTerm, setSearchTerm] = useState('');
     const [genre, setGenre] = useState('');
@@ -22,7 +22,7 @@ const Filters = ({ genres, onFilter, onSearch }) => {
     };
 
     return (
-        <div className="filters">
+        <div className={`filters ${isMenuOpen ? "open" : ""}`}>
             {/*Input para buscar por título*/}
             <input
                 type="text"

@@ -1,12 +1,11 @@
-//Estilos para el contenedor del filtro y búsqueda
 .filters {
     display: flex;
+    flex-wrap: wrap; // Permite que los elementos se acomoden en varias líneas
     gap: 10px;
     align-items: center;
     justify-content: center;
-    padding: 10px;
-    
-    //Estílos para la barra de búsqueda y selección del género
+    max-width: 100%; // Se asegura de que no sobrepase el ancho disponible
+
     input, select {
         padding: 8px 12px;
         border-radius: 8px;
@@ -14,6 +13,7 @@
         font-size: 1rem;
         outline: none;
         transition: all 0.3s ease-in-out;
+        max-width: 100%; // Evita que los elementos sean demasiado grandes
 
         &:focus {
             box-shadow: 0 0 5px rgba(205, 81, 255, 0.8);
@@ -28,26 +28,12 @@
         background-color: rgba(205, 81, 255, 0.1);
         cursor: pointer;
     }
-}
 
-// Estilos para los diferentes modos
-.dark-mode {
-    .filters {
-        input, select {
-            background-color: #300a42; 
-            color: #fff;
-        }
-        ::placeholder {
-            color: #e7e7e7;
-        }
-    }
-}
-
-.light-mode {
-    .filters {
-        input, select {
-            background-color: #e0b3ff;
-            color: #000;
+    @media screen and (max-width: 768px) {
+        flex-direction: column; // Acomoda los elementos en columna
+        align-items: stretch; // Asegura que ocupen el ancho disponible
+        input {
+            width: 100%; // Ocupa todo el ancho disponible
         }
     }
 }

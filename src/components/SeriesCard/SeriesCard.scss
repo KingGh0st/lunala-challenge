@@ -4,8 +4,10 @@
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s ease;
-    width: 200px;
+    width: 200px;//Tamaño base para pantallas grandes
     margin: 10px;
+    flex: 1 1 200px;//Flexbox para que las tarjetas sean flexibles
+    max-width: 100%;//Evita que las tarjetas se salgan del contenedor
 
     //Efecto hover para escalar la seriescard
     &:hover {
@@ -15,29 +17,49 @@
     //Estilos de la imagen de la serie
     img {
         width: 100%;
-        height: 300px;
-        object-fit: cover;
+        height: auto;//Altura automática para mantener la proporción
+        aspect-ratio: 2/3;//Proporción de la imagen (2:3 para posters)
+        object-fit: cover;//Ajusta la imagen al contenedor
     }
 
-    //Estilos del nombre de la serie
+    //Estilos del título
     h3 {
         color: #ccc;
         margin: 10px;
         font-size: 1.2rem;
         white-space: nowrap;
-        overflow: hidden; 
-        text-overflow: ellipsis; 
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
-    //Estilos de la descripción de la serie
+    //Estilos del overview de la serie
     p {
         margin: 10px;
         color: #ccc;
         font-size: 0.9rem;
         display: -webkit-box;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 3;//Limita el texto a 3 líneas
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+
+    //Media queries para diseño responsivo
+    @media (max-width: 1200px) {
+        width: 180px;//Tamaño para pantallas medianas
+    }
+
+    @media (max-width: 992px) {
+        width: 160px;//Tamaño para tablets
+    }
+
+    @media (max-width: 768px) {
+        width: 140px;//Tamaño para tablets pequeñas
+    }
+
+    @media (max-width: 576px) {
+        width: 100%;//Ocupa todo el ancho en móviles
+        margin: 10px 0;//Margen vertical para móviles
+        flex: 1 1 100%;//Flexbox para ocupar todo el ancho
     }
 }
