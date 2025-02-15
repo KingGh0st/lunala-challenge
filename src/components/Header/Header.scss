@@ -1,3 +1,4 @@
+//Estilos para el header
 .header {
     display: flex;
     justify-content: space-around;
@@ -10,16 +11,19 @@
     left: 0;
     z-index: 1000;
 
+    //Estilos para el logo o título de la página
     .logo {
         font-size: 1.75rem;
         font-weight: bold;
 
+        //Estilos de enlace
         a {
             color: #fff;
             text-decoration: none;
             transition: 0.5s;
             padding: 5px;
 
+            //Efecto de hover para transformar el logo
             &:hover {
                 color: #bc43ece8;
                 background-color: #fff;
@@ -28,6 +32,7 @@
         }
     }
 
+    //Estilos de los enlaces a las otras páginas
     .nav-links {
         display: flex;
         list-style: none;
@@ -39,13 +44,15 @@
             font-size: 1.5rem;
             transition: 0.5s ease;
 
+            //Efecto hover para cambiar el color del enlace
             &:hover {
-                color: #e50914;
+                color: #ae1bc2;
                 transition: 0.5s ease;
             }
         }
     }
 
+    //Estilos para el botón de cambiar de tema
     .theme-toggle {
         padding: 10px 15px;
         border: none;

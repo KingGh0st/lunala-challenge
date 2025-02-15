@@ -3,12 +3,14 @@ import React from 'react';
 import MovieCard from '../MovieCard/MovieCard.jsx';
 import './MovieList.scss';
 
+//Componente movielist
 const MovieList = ({ movies, onMovieClick }) => {
     return (
         <section className="movie-list">
-        {movies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} onClick={() => onMovieClick(movie.id)}/>
-        ))}
+            {/*Mapeo de las películas para crear la lista de películas y gestionar los clicks en ellas*/}
+            {movies.map((movie) => (
+                <MovieCard key={movie.id} movie={movie} onClick={() => onMovieClick(movie.id)}/>
+            ))}
         </section>
     );
 };

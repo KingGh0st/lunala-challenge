@@ -1,34 +1,41 @@
+//Estilos para el contenedor principal del carrusel
 .carrusel {
     padding: 20px;
     margin-top: 6vh;
 
+    //Estilos para el título del carrusel
     h2 {
         font-size: 1.5rem;
         margin-bottom: 20px;
         color: var(--text-color);
     }
 
+    //Estilos para el contenedor del Swiper
     .swiper-container {
         width: 100%;
         position: relative;
     }
 
+    //Estilos para cada slide del carrusel
     .swiper-slide {
         display: flex;
         justify-content: center;
         align-items: center;
         transition: transform 0.3s ease;
     
+        //Efecto de hover para escalar el slide
         &:hover {
             transform: scale(1.1);
         }
 
+        //Estilos para la imagen dentro del slide
         img {
             max-width: 100%; 
             height: auto;
         }
     }
-    // Estilos para las flechas de navegación
+
+    //Estilos para las flechas de navegación (siguiente y previa)
     .swiper-button-next,
     .swiper-button-prev {
         color: #9618af;
@@ -42,29 +49,34 @@
         transform: translateY(-50%);
         z-index: 10;
         
+        //Efecto de hover para las flechas
         &:hover {
             background: rgba(0, 0, 0, 0.8);
         }
     
+        //Estilos para el ícono dentro de las flechas
         &::after {
             font-size: 1.5rem;
         }
-
     }
 
+    //Posición específica para la flecha de siguiente
     .swiper-button-next {
-        right: 10px; // Posición de la flecha de siguiente
+        right: 10px;
     }
     
+    //Posición específica para la flecha de anterior
     .swiper-button-prev {
-        left: 10px; // Posición de la flecha de anterior
+        left: 10px;
     }
 }
 
+//Estilos para el carrusel en modo oscuro
 .dark-mode .carrusel {
     background: rgba(0, 0, 0, 0.5);
 }
 
+//Estilos para el carrusel en modo claro
 .light-mode .carrusel {
     background: rgba(255, 255, 255, 0.5);
 }

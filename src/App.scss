@@ -1,9 +1,10 @@
+//Animación sutil de fondo
 @keyframes backgroundMove {
     0% { background-position: 0% 0%; }
     100% { background-position: 100% 100%; }
 }
 
-// Estilos para el modo oscuro
+//Estilos para el modo oscuro
 .dark-mode {
     background-color: #141414;
     background: linear-gradient(135deg, #1a002a, #3a007d);
@@ -11,18 +12,20 @@
     animation: backgroundMove 10s infinite alternate;
     color: #fff;
 
+    //Estílos para el header de modo oscuro
     .header {
         background: linear-gradient(90deg, rgba(122, 0, 247, 0.84) 0%, rgba(205, 81, 255, 1) 47%, rgba(1, 0, 255, 0.84) 100%);
         color: #fff;
     }
 
+    //Estilos para las card de modo oscuro
     .movie-card, .series-card {
         background: #5e5e5ec4;
         color: #fff;
     }
 }
 
-  // Estilos para el modo claro
+// Estilos para el modo claro
 .light-mode {
     background: linear-gradient(135deg, #f3e8ff, #dab6ff);
     background-size: 200% 200%;
@@ -30,6 +33,7 @@
     background-color: #fff;
     color: #000;
 
+    //Estilos para el header de modo claro
     .header {
         background: linear-gradient(90deg, rgba(205, 81, 255, 0.5) 0%, rgba(255, 255, 255, 0.84) 47%,  rgba(1, 0, 255, 0.5) 100%);
     }
@@ -39,25 +43,30 @@
             }
         }
 
+    //Estilos para las card de modo claro
     .movie-card, .series-card {
         background: #ffffffb7;
         color: #000000;
 
+        //Estilos para el overview de la card
         p{
             color: #000;
         }
 
+        //Estilos para el título de la card
         h3{
             color: #000;
         }
     }
 
+    //Estilos del contenido del modal
     .modal-content{
         background-color: #ffffffd3;
         color: #000;
     }
 }
 
+//Estilos generales de la app
 .app{
     padding-top: 80px;
 }

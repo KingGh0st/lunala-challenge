@@ -1,3 +1,4 @@
+//Estilos para el contenedor del filtro y búsqueda
 .filters {
     display: flex;
     gap: 10px;
@@ -5,6 +6,7 @@
     justify-content: center;
     padding: 10px;
     
+    //Estílos para la barra de búsqueda y selección del género
     input, select {
         padding: 8px 12px;
         border-radius: 8px;

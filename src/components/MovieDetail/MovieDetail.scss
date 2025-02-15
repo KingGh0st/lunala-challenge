@@ -1,3 +1,4 @@
+//Estilos para el contenedor del modal de los detalles de la película
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -12,6 +13,7 @@
     color: #fff;
 }
 
+//Estilos para el contenido del modal
 .modal-content {
     background: #14141469;
     padding: 20px;
@@ -22,6 +24,7 @@
     }
     position: relative;
 
+    //Estílo del botón para cerrar el overlay
     .close-button {
         position: absolute;
         top: 10px;
@@ -40,6 +43,7 @@
         }
     }
 
+    //Esílos de la imagen de la película
     img {
         width: 50%;
         height: auto;
@@ -47,6 +51,7 @@
         margin-bottom: 20px;
     }
 
+    //Estílos del título de la película
     h2 {
         font-size: 2rem;
         margin-bottom: 10px;
@@ -56,6 +61,7 @@
         }
     }
 
+    //Estílos del overview de la película
     p {
         font-size: 1rem;
         margin-bottom: 10px;
